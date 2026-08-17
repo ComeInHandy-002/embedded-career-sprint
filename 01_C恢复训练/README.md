@@ -43,6 +43,16 @@ powershell -ExecutionPolicy Bypass -File .\run_tests.ps1
 
 通过标准：8/8 测试通过，GCC 没有警告；随后不看源码画出 `head`、`tail`、`count` 在回绕时的变化。
 
+## 首日诊断与反馈
+
+8 月 17 日先完成 `diagnostic/day01_baseline.c` 的 6 项测试，再开始 `rb_init`。一键查看两组进度：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\check_progress.ps1
+```
+
+第一次独立尝试后仍卡住时，依次查看 `C基础速查_第1天.md` 和 `分级提示_第1天.md`。完成后填写 `首日提交记录模板.md`，再提交本人代码。
+
 ## 闭卷规则
 
 打开 `闭卷测试.md`，设置 90 分钟计时。关闭网络、视频、AI 和笔记，直接在新文件中作答。完成后把答案发给我评阅，不要自己根据印象打分。
