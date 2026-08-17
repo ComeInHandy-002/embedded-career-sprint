@@ -1,0 +1,23 @@
+# Local editor and operating-system files
+.idea/
+.vscode/
+.metadata/
+Thumbs.db
+.DS_Store
+
+# Generated C and STM32 build output
+build/
+Debug/
+Release/
+*.o
+*.d
+*.elf
+*.bin
+*.hex
+*.map
+*.exe
+
+# Temporary logs and crash dumps
+*.log
+*.tmp
+*.stackdump

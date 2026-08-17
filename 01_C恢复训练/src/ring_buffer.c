@@ -1,0 +1,59 @@
+#include "ring_buffer.h"
+
+/*
+ * 这个文件故意只保留可编译的骨架，不包含正确答案。
+ * 请先在纸上写清楚每个函数的输入、输出和状态变化，再逐个实现。
+ */
+
+RbStatus rb_init(RingBuffer *buffer)
+{
+    (void)buffer;
+    /* TODO：检查空指针，并把 head、tail、count 恢复到初始状态。 */
+    return RB_INVALID_ARGUMENT;
+}
+
+RbStatus rb_push(RingBuffer *buffer, int value)
+{
+    (void)buffer;
+    (void)value;
+    /* TODO：检查参数和满状态，写入数据，并处理 tail 回绕。 */
+    return RB_INVALID_ARGUMENT;
+}
+
+RbStatus rb_pop(RingBuffer *buffer, int *value)
+{
+    (void)buffer;
+    (void)value;
+    /* TODO：检查参数和空状态，读出数据，并处理 head 回绕。 */
+    return RB_INVALID_ARGUMENT;
+}
+
+RbStatus rb_peek(const RingBuffer *buffer, int *value)
+{
+    (void)buffer;
+    (void)value;
+    /* TODO：读取队首数据，但不能改变 head、tail 和 count。 */
+    return RB_INVALID_ARGUMENT;
+}
+
+size_t rb_size(const RingBuffer *buffer)
+{
+    (void)buffer;
+    /* TODO：空指针返回 0，否则返回当前元素数量。 */
+    return 0U;
+}
+
+bool rb_is_empty(const RingBuffer *buffer)
+{
+    (void)buffer;
+    /* TODO：空指针按“空”处理，否则判断 count。 */
+    return true;
+}
+
+bool rb_is_full(const RingBuffer *buffer)
+{
+    (void)buffer;
+    /* TODO：空指针不能视为已满，否则判断 count。 */
+    return false;
+}
+
