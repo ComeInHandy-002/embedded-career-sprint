@@ -9,7 +9,13 @@ RbStatus rb_init(RingBuffer *buffer)
 {
     (void)buffer;
     /* TODO：检查空指针，并把 head、tail、count 恢复到初始状态。 */
-    return RB_INVALID_ARGUMENT;
+    if (buffer==NULL) {
+        return RB_INVALID_ARGUMENT;
+    }
+    buffer->head=0U;
+    buffer->tail=0U;
+    buffer->count=0U;
+    return RB_OK;
 }
 
 RbStatus rb_push(RingBuffer *buffer, int value)
