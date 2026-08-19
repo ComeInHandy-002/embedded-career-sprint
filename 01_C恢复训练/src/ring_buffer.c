@@ -23,7 +23,16 @@ RbStatus rb_push(RingBuffer *buffer, int value)
     (void)buffer;
     (void)value;
     /* TODO：检查参数和满状态，写入数据，并处理 tail 回绕。 */
-    return RB_INVALID_ARGUMENT;
+    if (buffer==NULL) {
+        return RB_INVALID_ARGUMENT;
+    }
+    if (buffer->count==RB_CAPACITY) {
+        return RB_FULL;
+    }
+    buffer->data[buffer->tail]=value;
+    buffer->tail=(buffer->tail+1U)%RB_CAPACITY;
+    buffer->count+=1U;
+    return RB_OK;
 }
 
 RbStatus rb_pop(RingBuffer *buffer, int *value)
@@ -46,7 +55,10 @@ size_t rb_size(const RingBuffer *buffer)
 {
     (void)buffer;
     /* TODO：空指针返回 0，否则返回当前元素数量。 */
-    return 0U;
+    if (buffer==NULL) {
+        return 0U;
+    }
+    return buffer->count;
 }
 
 bool rb_is_empty(const RingBuffer *buffer)
@@ -60,6 +72,9 @@ bool rb_is_full(const RingBuffer *buffer)
 {
     (void)buffer;
     /* TODO：空指针不能视为已满，否则判断 count。 */
-    return false;
+    if (buffer==NULL) {
+        return false;
+    }
+    return buffer->count==RB_CAPACITY;
 }
 
