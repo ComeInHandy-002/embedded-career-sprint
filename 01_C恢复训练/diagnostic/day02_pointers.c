@@ -28,7 +28,7 @@ bool d2_min_max(const int *values, size_t length, int *minimum, int *maximum)
     }
     int min,max;
     min=max=values[0];
-    for (size_t i=0;i<length;i++) {
+    for (size_t i=1;i<length;i++) {
         if (values[i]<min) {
             min=values[i];
         }
@@ -50,11 +50,10 @@ size_t d2_string_length(const char *text)
     if (text==NULL) {
         return 0U;
     }
-    size_t i=0U;
+
     size_t count=0U;
-    while (text[i]!='\0') {
+    while (text[count]!='\0') {
         count++;
-        i++;
     }
     return count;
 }

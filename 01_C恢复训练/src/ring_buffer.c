@@ -40,7 +40,16 @@ RbStatus rb_pop(RingBuffer *buffer, int *value)
     (void)buffer;
     (void)value;
     /* TODO：检查参数和空状态，读出数据，并处理 head 回绕。 */
-    return RB_INVALID_ARGUMENT;
+    if (buffer==NULL||value==NULL) {
+        return RB_INVALID_ARGUMENT;
+    }
+    if (buffer->count==0) {
+        return RB_EMPTY;
+    }
+    *value=buffer->data[buffer->head];
+    buffer->head=(buffer->head+1U)%RB_CAPACITY;
+    buffer->count-=1U;
+    return RB_OK;
 }
 
 RbStatus rb_peek(const RingBuffer *buffer, int *value)
@@ -48,7 +57,15 @@ RbStatus rb_peek(const RingBuffer *buffer, int *value)
     (void)buffer;
     (void)value;
     /* TODO：读取队首数据，但不能改变 head、tail 和 count。 */
-    return RB_INVALID_ARGUMENT;
+    if (buffer==NULL||value==NULL) {
+        return RB_INVALID_ARGUMENT;
+    }
+    if (buffer->count==0U) {
+        return RB_EMPTY;
+    }
+    *value=buffer->data[buffer->head];
+
+    return RB_OK;
 }
 
 size_t rb_size(const RingBuffer *buffer)
@@ -65,7 +82,13 @@ bool rb_is_empty(const RingBuffer *buffer)
 {
     (void)buffer;
     /* TODO：空指针按“空”处理，否则判断 count。 */
-    return true;
+    if (buffer==NULL) {
+        return true;
+    }
+    if (buffer->count==0U) {
+        return true;
+    }
+    return false;
 }
 
 bool rb_is_full(const RingBuffer *buffer)
